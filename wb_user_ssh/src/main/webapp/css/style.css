@@ -1,0 +1,129 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.div1 {
+	height: 75px;
+	background-color: #0099cc;
+	color: white;
+}
+
+.div2 {
+	width: 11%;
+	height: 600px;
+	float: left;
+	background-color: #dcdcdc;
+	text-align: center;
+}
+
+.button-1 {
+	cursor: pointer;
+	font-size: 18px;
+	width: 100%;
+	height: 40px;
+	border: none;
+	opacity: 0.5;
+}
+
+.div3 {
+	width: 100%;
+}
+
+.div3-1 {
+	font-size: 19px;
+	margin-left: 170px;
+	margin-top: 20px;
+	line-height: 20px;
+	margin-right: 25px;
+}
+
+.button3-1 {
+	margin-left: 17px;
+	width: 90px;
+	height: 27px;
+}
+
+.div3-2 {
+	line-height: 60px;
+	margin-left: 200px;
+}
+
+.div1-1 {
+	margin-top: 20px;
+	padding-left: 20px;
+	float: left;
+	color: white;
+	font-size: 30px;
+	font-family: '楷体';
+}
+
+.div1-2 {
+	float: right;
+	margin-right: 50px;
+	margin-top: 20px;
+	font-size: 18px;
+}
+
+.image-1 {
+	float: left;
+	margin-left: 25px;
+	width: 72px;
+	height: 72px;
+}
+
+.image-2 {
+	width: 95px;
+	height: 95px;
+	border-radius: 100%;
+	overflow: hidden;
+	margin-top: 300px;
+	margin-left: 18px;
+}
+
+table {
+	margin-top: 30px;
+	width: 100%;
+	border: 0.5px solid;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+td {
+	height: 50px;
+	border: 0.5px solid;
+}
+
+th {
+	height: 40px;
+	border: 0.5px solid;
+	background-color: #dcdcdc;
+}
+
+.input1 {
+	width: 60%;
+	height: 30px;
+}
+
+h3 {
+	text-align: center;
+}
+
+.button-3 {
+	margin-top: 20px;
+	margin-left: 130px;
+	width: 100px;
+	height: 30px;
+}
+
+.div007 {
+	float: right;
+	margin-right: 50px;
+	color: red;
+	font-family: "楷体";
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+}

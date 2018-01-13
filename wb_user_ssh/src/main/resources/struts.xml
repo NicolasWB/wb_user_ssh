@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 修改动态方法的调用,true 动态方法，false 非动态方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+	<package name="default" namespace="/" extends="json-default">
+		<action name="userAction!*" class="userAction" method="{1}">
+			<result name="list">/WEB-INF/view/user/index.jsp</result>
+			<result name="delete">/WEB-INF/jsp/list.jsp</result>
+			<result name="info">/WEB-INF/jsp/info.jsp</result>
+		</action>
+		<!-- 异步刷新页面的Action -->
+		<action name="content" class="changeAction" method="content">
+			<result name="list">/WEB-INF/view/user/list.jsp</result>
+		</action>
+		<action name="success" class="changeAction" method="success">
+			<result name="success">/WEB-INF/view/user/form.jsp</result>
+		</action>
+		<!-- 图表Action -->
+		<action name="pie" class="chartAction" method="chartPie">
+			<result name="pie">/WEB-INF/view/user/pie.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans 
+    	classpath:org/springframework/beans/factory/xml/spring-beans-4.3.xsd 
+    	
+        http://www.springframework.org/schema/context 
+        classpath:org/springframework/context/config/spring-context-4.3.xsd 
+        
+        http://www.springframework.org/schema/tx 
+        classpath:org/springframework/transaction/config/spring-tx-4.3.xsd 
+        
+        http://www.springframework.org/schema/aop 
+        classpath:org/springframework/aop/config/spring-aop-4.3.xsd ">
+	<!-- 识别Dao -->
+	<context:component-scan base-package="com.qsx.project.dao" />
+	<!-- 数据库的连接 -->
+	<context:property-placeholder
+		ignore-resource-not-found="true" location="classpath*:/application.properties" />
+
+	<!-- Spring 数据库连接池设置 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<!-- Hibernate sessionFactory 配置 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="packagesToScan">
+			<list>
+				<!-- 项目实体类所在package，可以设置多个package -->
+				<value>com.qsx.project.model</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 定义事务管理器（声明式的事务） -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="interceptorPointCuts"
+			expression="execution(public * com.qsx.project.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
+	</aop:config>
+	<bean class="com.qsx.project.common.BaseDao">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>
